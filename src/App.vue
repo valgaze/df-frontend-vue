@@ -444,8 +444,11 @@ export default {
   },
 
   watch: {
-    backend() {
-      this.client.updateBackend(this.backend);
+    backend: {
+      immediate: true,
+      handler: function(val) {
+        this.client.updateBackend(val);
+      },
     },
     grpc() {
       this.client.updateTransformgrpc(this.grpc);
@@ -744,7 +747,8 @@ export default {
               this.client._get(component, "simpleResponse.textToSpeech", null)
             );
 
-            if (text) {
+            const simulator = `response in dialogflow simulator`;
+            if (text && !text.toLowerCase().includes(simulator)) {
               this.addText(text);
             }
           } else {

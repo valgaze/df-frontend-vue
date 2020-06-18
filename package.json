@@ -10,7 +10,8 @@
     "test": "(npm run killdist 2>/dev/null || true) && npm run build_test && tape dist/*.test.js",
     "build_test": "tsc",
     "killdist": "rm -rf dist",
-    "m": "npx ts-node $1"
+    "m": "npx ts-node $1",
+    "cycle": "npm run build && cp -r dist/* ../__dfcheatkit/src/frontend/dist/ && cd ../__dfcheatkit && npm run deploy:frontend && cd ../df-frontend-vue && echo 'done'"
   },
   "dependencies": {
     "chart.xkcd": "^1.1.13",
