@@ -1,14 +1,21 @@
 <template>
   <div id="app">
     <div ref="headerRef">
-      <!-- <img src="./assets/df_cheatcodes.gif" /> -->
-      <HelloWorld :darkmode="darkmode" />
       <videogameize
         v-if="!isSafari"
         target="https://github.com/valgaze/df-cheatcodes"
         :animate="animate"
         :darkmode="darkmode"
+        class="df__logo"
       ></videogameize>
+      <!-- Shimmer doeesn't work in safari :/ -->
+      <img
+        v-else
+        @click="_openLinkout('https://github.com/valgaze/df-cheatcodes')"
+        src="https://raw.githubusercontent.com/valgaze/df-cheat-docs/master/assets/df_cheatcodes.gif"
+        class="df__logo"
+      />
+      <HelloWorld :darkmode="darkmode" />
     </div>
     <section
       class="nes-container"
@@ -130,7 +137,7 @@
       <div class="nes-field is-inline" :class="{ 'is-dark': darkmode }">
         <input
           type="text"
-          id="name_field"
+          id="chat__input"
           class="nes-input"
           placeholder="Enter your message"
           v-model="usermsg"
@@ -287,6 +294,9 @@
             <button @click="saveDefaults" class="nes-btn is-primary">
               Reset Default
             </button>
+            <button @click="suggestions = []" class="nes-btn is-primary">
+              Clear Suggestions
+            </button>
           </menu>
         </form>
       </div>
@@ -368,7 +378,6 @@ export default {
 
     // handle overrides/flags
     this.grabFlags();
-    console.log(this.greeting);
 
     // session
     this.session = this.client.buildSession();
@@ -398,17 +407,22 @@ export default {
         this.client.send(eventPayload);
       }
     }
+    // 1st render on mobile safari
+    this.$nextTick(() => {
+      this._scrollDown();
+    });
   },
   data() {
     return {
-      isSafari: Boolean(window.safari),
+      // @fregante via: https://stackoverflow.com/a/23522755/3191929
+      isSafari: /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
       pos: 0,
       userEntries: [`$cheat graph`],
       transformgrpc: true,
       rootHeight: 0,
       headerHeight: 0,
       footerHeight: 0,
-      greeting: `Love chatting about chatbots & intelligent agents-- valgaze.com`,
+      greeting: ``,
       rowActive: false,
       modalStyle: {
         height: "100%",
@@ -444,8 +458,11 @@ export default {
   },
 
   watch: {
-    backend() {
-      this.client.updateBackend(this.backend);
+    backend: {
+      immediate: true,
+      handler: function(val) {
+        this.client.updateBackend(val);
+      },
     },
     grpc() {
       this.client.updateTransformgrpc(this.grpc);
@@ -575,6 +592,15 @@ export default {
         content: payload,
       });
     },
+    addSuggestion(suggestion) {
+      if (
+        suggestion &&
+        suggestion != " " &&
+        !this.suggestions.includes(suggestion)
+      ) {
+        this.updateSuggestions([suggestion]);
+      }
+    },
     updateSuggestions(suggestions) {
       const { permanentSuggestions } = this;
       this.suggestions = [...permanentSuggestions, ...suggestions];
@@ -666,8 +692,10 @@ export default {
     },
     async send(payload) {
       if (!payload) return;
+      let plainText;
       // Text case
       if (typeof payload === "string" && payload !== "" && payload !== " ") {
+        plainText = payload;
         this.thinking = true;
         this.usermsg = "";
         this.addText(payload, "me");
@@ -690,6 +718,7 @@ export default {
         this.addText(
           this.debugMode ? e : `Whoops there was an issue, try that again?`
         );
+        this.addSuggestion(plainText);
         if (this.scrollToBottom) {
           this._scrollDown();
         }
@@ -744,7 +773,8 @@ export default {
               this.client._get(component, "simpleResponse.textToSpeech", null)
             );
 
-            if (text) {
+            const simulator = `response in dialogflow simulator`;
+            if (text && !text.toLowerCase().includes(simulator)) {
               this.addText(text);
             }
           } else {
@@ -770,6 +800,12 @@ export default {
 </script>
 
 <style>
+.df__logo {
+  max-width: 85%;
+}
+.df__logo:hover {
+  transform: scale(1.3) rotate3d(1, 1, 1, 45deg);
+}
 .message-list {
   overflow: auto;
 }

@@ -1,6 +1,6 @@
 # df-cheatchat
 
-Live demo (order ice cream 3 times): **[https://df-cheatcodes.valgaze.com](https://df-cheatcodes.valgaze.com)**
+Demo (try ordering ice cream 3 times): **[https://df-cheatcodes.valgaze.com](https://df-cheatcodes.valgaze.com)**
 
 ![image](assets/frontend_ex.gif)
 
@@ -10,11 +10,11 @@ Reference implementation of a conversational interface that renders rich **[comp
 
 ## Handy features
 
+Lots of other stuff, **[see here for details](./assets/README.md)**
+
 - Conversation debugging tools (see the settings & request buttons to trigger requests, transform grpc, etc)
 
 - Convenience like up/Down arrows to cycle through history to easily repeat commands, darkmode, swap backends on the fly, etc
-
-- Lots of other stuff, **[see here for details](./assets/README.md)**
 
 **NOTE:** Before deploying, make sure to replace the value in **[.env.production](.env.production)**
 
@@ -44,6 +44,18 @@ Reference implementation of a conversational interface that renders rich **[comp
 | **[listSelect](https://developers.google.com/assistant/conversational/selection-responses)**                          | done (webhookPayload) | tap emits title             |
 
 All items: https://gist.github.com/valgaze/dcd07f6d93f654de6d14d76a341d9450#actions-on-google
+
+## Tests
+
+```sh
+npm run test
+```
+
+Visual test
+
+```sh
+npm run test:visual
+```
 
 ## Project setup
 
