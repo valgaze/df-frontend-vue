@@ -52,18 +52,30 @@
     </carousel>
 
     <carousel :data="msg.content" v-if="msg.type === 'carouselSelect'">
-      <carouselcard
-        @componentTap="handler"
-        v-for="(item, index) in msg.content.items"
-        :key="index"
-        :data="{ subtitle: item.description, title: item.title }"
-        :image_url="(item.image && item.image.url) || undefined"
-        :image_alttext="
-          (item.image && item.image.accessibilityText) || undefined
-        "
-        :darkmode="darkmode"
-        :debug="debug"
-      />
+      <carousel_3d
+        :disable3d="true"
+        :space="365"
+        :clickable="false"
+        :controls-visible="true"
+      >
+        <carousel_3d_slide
+          v-for="(item, index) in msg.content.items"
+          :index="index"
+          :key="index + 'arouselSelect__picker'"
+        >
+          <carouselcard
+            @componentTap="handler"
+            :key="index"
+            :data="{ subtitle: item.description, title: item.title }"
+            :image_url="(item.image && item.image.url) || undefined"
+            :image_alttext="
+              (item.image && item.image.accessibilityText) || undefined
+            "
+            :darkmode="darkmode"
+            :debug="debug"
+          />
+        </carousel_3d_slide>
+      </carousel_3d>
     </carousel>
 
     <!-- Picker: listSelect, here lazy version is a carousel implementation -->
@@ -166,6 +178,8 @@
 </template>
 
 <script>
+import { Carousel3d, Slide } from "vue-carousel-3d";
+
 // Rich components, see here: https://gist.github.com/valgaze/dcd07f6d93f654de6d14d76a341d9450
 import card from "./rich-components/card.vue";
 import cardbutton from "./rich-components/button.vue";
@@ -203,6 +217,8 @@ import {
 
 export default {
   components: {
+    carousel_3d: Carousel3d,
+    carousel_3d_slide: Slide,
     "chartxkcd-line": chartXKCDLine,
     "chartxkcd-bar": chartXKCDBar,
     "chartxkcd-xy": chartXKCDXY,
@@ -304,5 +320,9 @@ export default {
 
 .debug-wrap {
   margin-bottom: 5%;
+}
+
+.carousel-3d-slide {
+  background: #fff;
 }
 </style>
