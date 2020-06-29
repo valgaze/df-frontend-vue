@@ -368,7 +368,6 @@ export default {
 
     // handle overrides/flags
     this.grabFlags();
-    console.log(this.greeting);
 
     // session
     this.session = this.client.buildSession();
@@ -408,7 +407,7 @@ export default {
       rootHeight: 0,
       headerHeight: 0,
       footerHeight: 0,
-      greeting: `Love chatting about chatbots & intelligent agents-- valgaze.com`,
+      greeting: ``,
       rowActive: false,
       modalStyle: {
         height: "100%",
