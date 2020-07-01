@@ -11,7 +11,10 @@
     "build_test": "tsc",
     "killdist": "rm -rf dist",
     "m": "npx ts-node $1",
-    "cycle": "npm run build && cp -r dist/* ../__dfcheatkit/src/frontend/dist/ && cd ../__dfcheatkit && npm run deploy:frontend:full && echo $PWD && cd deploy/frontend && echo 'done'"
+    "cycle": "npm run build && cp -r dist/* $npm_package_config_kitpath/src/frontend/dist/ && cd $npm_package_config_kitpath && npm run deploy:frontend:full && echo $PWD && cd deploy/frontend && echo 'done'"
+  },
+  "config": {
+    "kitpath": "../__dfcheatkit/"
   },
   "dependencies": {
     "chart.xkcd": "^1.1.13",
