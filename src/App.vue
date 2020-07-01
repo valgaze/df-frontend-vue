@@ -287,6 +287,9 @@
             <button @click="saveDefaults" class="nes-btn is-primary">
               Reset Default
             </button>
+            <button @click="suggestions = []" class="nes-btn is-primary">
+              Clear Suggestions
+            </button>
           </menu>
         </form>
       </div>
@@ -577,6 +580,15 @@ export default {
         content: payload,
       });
     },
+    addSuggestion(suggestion) {
+      if (
+        suggestion &&
+        suggestion != " " &&
+        !this.suggestions.includes(suggestion)
+      ) {
+        this.updateSuggestions([suggestion]);
+      }
+    },
     updateSuggestions(suggestions) {
       const { permanentSuggestions } = this;
       this.suggestions = [...permanentSuggestions, ...suggestions];
@@ -668,8 +680,10 @@ export default {
     },
     async send(payload) {
       if (!payload) return;
+      let plainText;
       // Text case
       if (typeof payload === "string" && payload !== "" && payload !== " ") {
+        plainText = payload;
         this.thinking = true;
         this.usermsg = "";
         this.addText(payload, "me");
@@ -692,6 +706,7 @@ export default {
         this.addText(
           this.debugMode ? e : `Whoops there was an issue, try that again?`
         );
+        this.addSuggestion(plainText);
         if (this.scrollToBottom) {
           this._scrollDown();
         }
