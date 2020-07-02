@@ -10,11 +10,11 @@ Reference implementation of a conversational interface that renders rich **[comp
 
 ## Handy features
 
+Lots of other stuff, **[see here for details](./assets/README.md)**
+
 - Conversation debugging tools (see the settings & request buttons to trigger requests, transform grpc, etc)
 
 - Convenience like up/Down arrows to cycle through history to easily repeat commands, darkmode, swap backends on the fly, etc
-
-- Lots of other stuff, **[see here for details](./assets/README.md)**
 
 **NOTE:** Before deploying, make sure to replace the value in **[.env.production](.env.production)**
 
