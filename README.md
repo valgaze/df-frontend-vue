@@ -1,6 +1,6 @@
 # df-cheatchat
 
-Live demo (order ice cream 3 times): **[https://df-cheatcodes.valgaze.com](https://df-cheatcodes.valgaze.com)**
+Demo (try ordering ice cream 3 times): **[https://df-cheatcodes.valgaze.com](https://df-cheatcodes.valgaze.com)**
 
 ![image](assets/frontend_ex.gif)
 
@@ -44,6 +44,18 @@ Lots of other stuff, **[see here for details](./assets/README.md)**
 | **[listSelect](https://developers.google.com/assistant/conversational/selection-responses)**                          | done (webhookPayload) | tap emits title             |
 
 All items: https://gist.github.com/valgaze/dcd07f6d93f654de6d14d76a341d9450#actions-on-google
+
+## Tests
+
+```sh
+npm run test
+```
+
+Visual test
+
+```sh
+npm run test:visual
+```
 
 ## Project setup
 

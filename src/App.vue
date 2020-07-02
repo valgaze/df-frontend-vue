@@ -137,7 +137,7 @@
       <div class="nes-field is-inline" :class="{ 'is-dark': darkmode }">
         <input
           type="text"
-          id="name_field"
+          id="chat__input"
           class="nes-input"
           placeholder="Enter your message"
           v-model="usermsg"
