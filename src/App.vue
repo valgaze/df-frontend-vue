@@ -6,7 +6,9 @@
         target="https://github.com/valgaze/df-cheatcodes"
         :animate="animate"
         :darkmode="darkmode"
+        class="df__logo"
       ></videogameize>
+      <!-- Shimmer doeesn't work in safari :/ -->
       <img
         v-else
         @click="_openLinkout('https://github.com/valgaze/df-cheatcodes')"
