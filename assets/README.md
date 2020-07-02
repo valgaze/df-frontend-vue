@@ -14,10 +14,16 @@ Easily send events, copy/paste requests for transmission outside of chat (like P
 
 ![image](debugger.gif)
 
+## Change backend
+
+NOTE: This only applies to your browser, see **[here](./../quickstart.md)** for creating a bundle
+
+![image](set_backend.gif)
+
 ## UI
 
 ![image](ui_components.gif)
 
-- Cycle through message w/ up & down arrows
+- Cycle through message history using up & down arrows
 
 - Custom components (see **[https://github.com/valgaze/df-cheatcodes](https://github.com/valgaze/df-cheatcodes)**)
