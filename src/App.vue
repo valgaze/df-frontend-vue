@@ -400,6 +400,10 @@ export default {
         this.client.send(eventPayload);
       }
     }
+    // 1st render on mobile safari
+    this.$nextTick(() => {
+      this._scrollDown();
+    });
   },
   data() {
     return {
