@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <div ref="headerRef">
-      <!-- <img src="./assets/df_cheatcodes.gif" /> -->
-      <HelloWorld :darkmode="darkmode" />
       <videogameize
         v-if="!isSafari"
         target="https://github.com/valgaze/df-cheatcodes"
         :animate="animate"
         :darkmode="darkmode"
       ></videogameize>
+      <img
+        v-else
+        @click="_openLinkout('https://github.com/valgaze/df-cheatcodes')"
+        src="https://raw.githubusercontent.com/valgaze/df-cheat-docs/master/assets/df_cheatcodes.gif"
+        class="df__logo"
+      />
+      <HelloWorld :darkmode="darkmode" />
     </div>
     <section
       class="nes-container"
@@ -407,7 +412,8 @@ export default {
   },
   data() {
     return {
-      isSafari: Boolean(window.safari),
+      // @fregante via: https://stackoverflow.com/a/23522755/3191929
+      isSafari: /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
       pos: 0,
       userEntries: [`$cheat graph`],
       transformgrpc: true,
@@ -792,6 +798,12 @@ export default {
 </script>
 
 <style>
+.df__logo {
+  max-width: 85%;
+}
+.df__logo:hover {
+  transform: scale(1.3) rotate3d(1, 1, 1, 45deg);
+}
 .message-list {
   overflow: auto;
 }
