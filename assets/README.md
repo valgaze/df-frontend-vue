@@ -1,6 +1,12 @@
 ## Features
 
-This frontend is equippeed lots of useful conversational design/engineering tools
+This frontend is equippeed lots of handy conversational design/engineering tools
+
+## Debug Mode
+
+See detailed logs and inspect component responses
+
+![image](debug_mode.gif)
 
 ## Request Debugger
 
