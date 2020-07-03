@@ -12,10 +12,10 @@
       </li>
       <li>
         <a
-          href="https://github.com/valgaze/df-cheatkit"
+          href="https://github.com/valgaze/df-starter-kit"
           target="_blank"
           rel="noopener"
-          >df-cheatkit</a
+          >df-starter-kit</a
         >
       </li>
       <li>
@@ -37,7 +37,7 @@
       </li>
       <li>
         <a
-          href="https://github.com/valgaze/df-cheatkit/blob/master/docs/glossary.md"
+          href="https://github.com/valgaze/df-starter-kit/blob/master/docs/glossary.md"
           target="_blank"
           rel="noopener"
           >Glossary</a
@@ -45,7 +45,7 @@
       </li>
       <li>
         <a
-          href="https://github.com/valgaze/df-cheatkit/blob/master/docs/resources.md"
+          href="https://github.com/valgaze/df-starter-kit/blob/master/docs/resources.md"
           target="_blank"
           rel="noopener"
           >Learning Resources</a
